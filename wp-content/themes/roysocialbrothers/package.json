@@ -1,0 +1,9 @@
+{
+  "name": "wpsass",
+  "version": "1.0.0",
+  "description": "Use Sass with WordPress, Node Script in SCSS flavour.",
+  "scripts": {
+    "css": "node-sass --output-style compressed --include-path scss style/style.scss style/style.css",
+    "watch": "nodemon -e scss -x \"npm run css\""
+  }
+}

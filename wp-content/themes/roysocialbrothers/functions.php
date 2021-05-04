@@ -1,22 +1,51 @@
 <?php
+/**
+ * Add stylesheet to the page
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content#Browser_compatibility
+ */
+add_action('wp_enqueue_scripts', function () { ?>
+  <script defer src="<?php echo get_stylesheet_directory_uri() ?>/script/javascript.js" type="module"></script>
 
-function bootstrapstarter_enqueue_styles() {
-    wp_register_style('bootstrap', get_template_directory_uri() . '/vendor/bootstrap/css/bootstrap.min.css' );
-    $dependencies = array('bootstrap');
-	wp_enqueue_style( 'bootstrapstarter-style', get_stylesheet_uri(), $dependencies ); 
+  <script async>
+    const head = document.getElementsByTagName('head')[0];
+    const link = document.createElement('link');
+    link.id = 'mycss';
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = '<?php echo get_stylesheet_directory_uri() ?>/style/style.css';
+    link.media = 'all';
+    head.appendChild(link);
+  </script>
+  <noscript>
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() ?>/style/style.css">
+  </noscript>
+
+<?php
+});
+
+// Disable gutenberg editor for posts
+add_filter("use_block_editor_for_post_type", "disable_gutenberg_editor");
+function disable_gutenberg_editor()
+{
+	return false;
 }
 
-function bootstrapstarter_enqueue_scripts() {
-    $dependencies = array('jquery');
-    wp_enqueue_script('bootstrap', get_template_directory_uri().'/vendor/bootstrap/js/bootstrap.min.js', $dependencies, '', true );
-}
+function header_styles()
+{
+	wp_enqueue_style(
+		'bootstrap',
+		get_stylesheet_directory_uri() . '/vendor/bootstrap-4.6.0/css/bootstrap.min.css'
+	);
+	wp_enqueue_style(
+		'bootstrap-grid',
+		get_stylesheet_directory_uri() . '/vendor/bootstrap-4.6.0/css/bootstrap-grid.min.css'
+	);
+	wp_enqueue_style(
+		'bootstrap-grid',
+		get_stylesheet_directory_uri() . '/vendor/bootstrap-4.6.0/css/bootstrap-reboot.min.css'
+	);
+};
 
-add_action( 'wp_enqueue_scripts', 'bootstrapstarter_enqueue_styles' );
-add_action( 'wp_enqueue_scripts', 'bootstrapstarter_enqueue_scripts' );
+add_action('wp_enqueue_scripts', 'header_styles');
 
-function bootstrapstarter_wp_setup() {
-    add_theme_support( 'title-tag' );
-}
-
-add_action( 'after_setup_theme', 'bootstrapstarter_wp_setup' );
 ?>
