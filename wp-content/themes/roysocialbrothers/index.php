@@ -1,111 +1,60 @@
 <?php get_header(); ?>
 
-<section class="container" style="border: 1px solid black;padding-left: 42px;padding-right:42px;">
+<section class="container px-5">
   <div class="row">
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				1
+		<div class="col-lg-6 my-5 bg-white">
+			<div class="row">
+				<div class="col-sm-12 my-4">
+					<?php echo do_shortcode('[themedomain_frontend_post]'); ?>
+				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				2
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				3
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				4
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				5
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				6
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				7
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				8
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				9
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				10
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				11
-			</div>
-		</div>
-		<div class="col">
-			<div style="background-color:#F4F4F4;">
-				12
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="container">
-  <div class="row">
-		<div class="col-sm-6">
-			<div style="background-color:red;">
-				Col
-			</div>
-		</div>
-		<div class="col-sm-6">
-			<div style="background-color:red;">
-				Col
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="container">
-	<div class="row">
-		<div class="col blog-main">
-
-				<?php
-				if ( have_posts() ) {
-						while ( have_posts() ) : the_post();
-				?>
-				<div class="blog-post">
+		<div class="col-lg-6 my-5 bg-white">
+			<div class="row">
+      <?php
+      $args = array(
+      'post_type'=> 'post',
+      'post_status' => 'publish',
+      'order'    => 'DESC',
+      'posts_per_page' => 4 // -1 this will retrive all the post that is published
+      );
+      $posts = get_posts($args);
+      if ( $posts) : ?>
+      <?php foreach ( $posts as $post ) : ?>
+			<div class="col-md-6 my-4 blog-main">
+			 <a href=<?php echo get_the_permalink(); ?> title="<?php the_title(); ?>">
+				<div class="blog-post h-100">
+					<div class="blog-meta-container">
+					 <?php the_post_thumbnail('homepage-thumb'); ?>
+						<div class="blog-post-meta">
+							<div class="row">
+								<div class="col d-flex justify-content-start meta-date">
+									<?php echo get_the_date( 'd-m-Y' ); ?>
+								</div>
+								<div class="col d-flex justify-content-end meta-category">
+									<?php the_category( ' ' ); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="blog-content">
 						<h2 class="blog-post-title"><?php the_title(); ?></h2>
-						<p class="blog-post-meta"><?php the_date(); ?> by <?php the_author(); ?></p>
-						<?php the_content(); ?>
-				</div><!-- /.blog-post -->
-				<?php
-						endwhile;
-				}
-				?>
-
-				<nav>
-						<ul class="pager">
-								<li><?php next_posts_link('Previous'); ?></li>
-								<li><?php previous_posts_link('Next'); ?></li>
-						</ul>
-				</nav>
-
-		</div><!-- /.blog-main -->
+						<span class="blog-post-content"><?php the_content(); ?></span>
+					</div>
+				</div>
+			</div>
+			</a>
+			<?php endforeach; ?>
+			<?php endif; wp_reset_postdata(); ?>
+			</div>
+			<div class="row">
+				<div class="col d-flex justify-content-center pt-3 pb-5">
+					<form action="<?php echo get_site_url(); ?>/blog">
+							<input type="submit" value="Meer laden" id="submit" name="submit" class="btn-primary"/>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 

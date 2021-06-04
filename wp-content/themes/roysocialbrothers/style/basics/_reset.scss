@@ -1,7 +1,21 @@
 body {
 	font-family: proxima-nova, sans-serif;
 	font-style: normal;
-	font-weight: 100;
+}
+
+section {
+	&.container {
+		background-color: #F4F4F4;
+	}
+}
+
+.logo {
+	background-image: url('../assets/images/SBlogo.svg');
+}
+
+.bg-image {
+	background-image: url('../assets/images/banner.jpg');
+	min-height: 250px;
 }
 
 h1, .h1,
@@ -14,19 +28,29 @@ h6, .h6 {
 	font-family: proxima-nova, sans-serif;
 	font-style: normal;
 	font-weight: 100;
-  color: blue;
+  color: #262626;
 }
 
+h2, .h2 {
+	font-size: 8px;
+}
+
+.bg-white {
+	background-color: #FFFFFF;
+}
+
+.page-title {
+	color: #ffffff;
+}
 
 /*
  * Override Bootstrap's default container.
  */
 @media (min-width: 1200px) {
 	section {
-		&.container, .container-lg, .container-md, .container-sm, .container-xl {
-				max-width: 1024px;
-				background-color:green;
-				padding: 0;
+		&.container {
+			max-width: 1024px;
+			padding: 0;
 		}
 	}
 }
@@ -39,42 +63,25 @@ h6, .h6 {
 .blog-nav-item {
   position: relative;
   display: inline-block;
-  padding: 10px;
+  padding: 10px 10px 2px 10px;
   font-weight: 500;
-  color: #cdddeb;
+  color: #ffffff;
 }
 .blog-nav-item:hover,
-.blog-nav-item:focus {
-  color: #000;
-  text-decoration: none;
+.blog-nav-item:focus,
+.blog-nav-item:active {
+	text-decoration: none;
+  border-bottom: 2px solid #E95E30;
+   color: #ffffff;
 }
 
-/* Active state gets a caret at the bottom */
-.blog-nav .active {
-  color: #666;
+.screen-reader-text {
+	display: none;
 }
-.blog-nav .active:after {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 0;
-  margin-left: -5px;
-  vertical-align: middle;
-  content: " ";
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid;
-  border-left: 5px solid transparent;
-}
-
 
 /*
  * Blog name and description
  */
-
-.blog-header {
-
-}
 .blog-title {
   font-size: 60px;
   font-weight: normal;
@@ -83,58 +90,172 @@ h6, .h6 {
   font-size: 20px;
   color: #999;
 }
-
+.blog-content {
+	padding: 1rem;
+}
 
 /*
  * Main column and sidebar layout
  */
-
 .blog-main {
   font-size: 18px;
   line-height: 1.5;
 }
+.blog-post {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
 
 /* Pagination */
 .pager {
-  margin-bottom: 60px;
-  text-align: left;
+	a {
+		color: #F27623;
+	}
+	a:hover {
+		color: #F27623;
+	}
+	.page-numbers:current {
+		background-color: red;
+	}
 }
-.pager > li > a {
-  width: 140px;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 30px;
+.nav-links {
+	a {
+		margin: 0 15px;
+		width: 15px;
+		font-size: 12px;
+	}
+	.current {
+		background-color: #F2F2F2;
+		padding: 5px 10px;
+		border-radius: 18px;
+		font-weight: bold;
+		font-size: 14px;
+	}
 }
-
 
 /*
  * Blog posts
  */
-
 .blog-post {
   margin-bottom: 60px;
 }
-.blog-post-title {
-  margin-bottom: 5px;
-  font-size: 40px;
-}
 .blog-post-meta {
-  margin-bottom: 20px;
-  color: #999;
+	a, a:hover {
+		color: white;
+	}
+	position: absolute;
+	top: 75%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	color: #ffffff;
+	font-size: 8px;
+	padding: 0 16px;
 }
-
+.blog-post-title {
+	font-size: 24px;
+	color: #262626;
+	margin-bottom: 8px;
+}
+.blog-post-content {
+	color: #868686;
+	font-size: 12px;
+}
+.blog-meta-container {
+    position: relative;
+    width: 100%;
+    height: 70px;
+}
 
 /*
  * Footer
  */
-
 .blog-footer {
-  padding: 40px 0;
-  color: #999;
+  color: #FFF;
+  font-size: 12px;
   text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+  background-color: #262626;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 8px 0;
+	a {
+		color: white;
+	}
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
+}
+img {
+	width: 100%;
+}
+/*
+ * FORM
+ */
+.new_post_form {
+	h3 {
+		font-size: 24px;
+		color: #2B2B2B;
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	.input-field, select {
+		background-color: #FAFAFA;
+		border: 0;
+		padding: 12px 18px;
+		width: 100%;
+	}
+	label {
+		color: #404040;
+		font-size: 12px;
+	}
+	textarea {
+		min-height: 200px;
+	}
+	.inputfile {
+  	width: 0.1px;
+  	height: 0.1px;
+  	opacity: 0;
+  	overflow: hidden;
+  	position: absolute;
+  	z-index: -1;
+  }
+	.inputfile + label {
+			font-size: 1.25em;
+			font-weight: 700;
+			color: white;
+			background-color: #7D7D7D;
+			display: inline-block;
+			border-radius: 18px;
+			min-width: 80px;
+			padding: 6px 12px;
+			font-size: 10px;
+			margin-left: 10px;
+	}
+	.inputfile:focus + label,
+	.inputfile + label:hover {
+			background-color: #f27623;
+	}
+	.inputfile + label {
+  	cursor: pointer; /* "hand" cursor */
+  }
+  .post-image-container {
+		background-color: #FAFAFA;
+		border: 0;
+		padding: 12px 12px 0 12px;
+		width: 40%;
+  }
+  ::placeholder {
+    color: #C5C5C5;
+    font-weight: normal;
+  }
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	border: 0;
+	border-radius: 18px;
+	background-color: #f27623;
+	padding: 10px 45px;
+	min-width: 192px;
+	font-size: 12px;
+	font-weight: 700;
 }
